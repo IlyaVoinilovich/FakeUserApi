@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FakeUserApi</name>
+    </assembly>
+    <members>
+        <member name="T:FakeUserApi.Controllers.FakeUsersController">
+            <summary>
+            FakeUsersController
+            </summary>
+        </member>
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.#ctor(FakeUserApi.Models.FakeUserContext,Microsoft.Extensions.Logging.ILogger{FakeUserApi.Controllers.FakeUsersController})">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.GetFakeUsers">
+            <summary>
+            Get all FakeUsers
+            </summary>
+            <returns>All FakeUsers</returns>
+        </member>
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.GetFakeUser(System.Int64)">
+            <summary>
+            Find a FakeUsers
+            </summary>
+            <param name="id"></param>
+            <response code="201">If find</response>
+            <response code="400">If not find</response>
+        </member>
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.PostFakeUser(FakeUserApi.Models.FakeUser)">
+            <summary>
+            Add new FakeUsers
+            </summary>
+            <remarks>
+            {
+                "name": "string",
+                "lastname": "string"
+            }
+            </remarks>
+            <param name="fakeUser"></param>
+            <returns>New FakeUsers</returns>
+        </member>
+        <member name="T:FakeUserApi.Models.FakeUser">
+            <summary>
+             FakeUser
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Name">
+            <summary>
+            Name 
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Lastname">
+            <summary>
+            Lastname
+            </summary>
+        </member>
+        <member name="T:FakeUserApi.Models.FakeUserContext">
+            <summary>
+            FakeUserContext
+            </summary>
+        </member>
+        <member name="M:FakeUserApi.Models.FakeUserContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{FakeUserApi.Models.FakeUserContext})">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUserContext.FakeUsers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FakeUserApi.Models.MyLogEvents">
+            <summary>
+            MyLogEvents
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.GenerateItems">
+            <summary>
+            GenerateItems
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.ListItems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.GetItem">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.InsertItem">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.UpdateItem">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.DeleteItem">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.TestItem">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.GetItemNotFound">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:FakeUserApi.Models.MyLogEvents.UpdateItemNotFound">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:FakeUserApi.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FakeUserApi.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:FakeUserApi.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FakeUserApi.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FakeUserApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:FakeUserApi.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FakeUserApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:FakeUserApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

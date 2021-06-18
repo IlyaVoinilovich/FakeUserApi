@@ -75,7 +75,7 @@ namespace FakeUserApi.Controllers
         [ProducesResponseType(typeof(FakeUser), 201)]
         public async Task<ActionResult<FakeUser>> PostFakeUser(FakeUser fakeUser)
         {
-            var FakeUser = _context.FakeUsers.FindAsync(fakeUser.Id);
+            var FakeUser = await _context.FakeUsers.FindAsync(fakeUser.Id);
             if (FakeUser != null)
             {
                 _logger.LogInformation(MyLogEvents.GetItem, "Post item {Id}", fakeUser.Id);

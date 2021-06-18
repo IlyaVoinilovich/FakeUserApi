@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,16 +7,16 @@ using System;
 using FakeUserApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-
+using System.IO;
 
 namespace FakeUserApi
 {/// <summary>
-/// 
+///  Startup
 /// </summary>
     public class Startup
     {
         /// <summary>
-        /// 
+        /// public Startup
         /// </summary>
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
@@ -36,7 +36,10 @@ namespace FakeUserApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddDbContextCheck<FakeUserContext>();
-            services.AddDbContext<FakeUserContext>(opt => opt.UseInMemoryDatabase("FakeUserList"));
+            // services.AddDbContext<FakeUserContext>(options => options.UseInMemoryDatabase("FakeUserList"));
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст MobileContext в качестве сервиса в приложение
+            services.AddDbContext<FakeUserContext>(options => options.UseSqlServer(connection));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,7 +49,10 @@ namespace FakeUserApi
                     Title = "FakeUsers API",
                     Description = "A simple example ASP.NET Core Web API",
                 });
+               var filePath = Path.Combine(AppContext.BaseDirectory, "FakeUserApi.xml");
+               c.IncludeXmlComments(filePath);
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

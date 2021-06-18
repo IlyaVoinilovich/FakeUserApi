@@ -68,6 +68,11 @@
             FakeUserContext
             </summary>
         </member>
+        <member name="M:FakeUserApi.Models.FakeUserContext.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:FakeUserApi.Models.FakeUserContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{FakeUserApi.Models.FakeUserContext})">
             <summary>
             
@@ -149,12 +154,12 @@
         </member>
         <member name="T:FakeUserApi.Startup">
             <summary>
-            
+             Startup
             </summary>
         </member>
         <member name="M:FakeUserApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            
+            public Startup
             </summary>
             <param name="configuration"></param>
         </member>

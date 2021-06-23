@@ -9,12 +9,13 @@
             FakeUsersController
             </summary>
         </member>
-        <member name="M:FakeUserApi.Controllers.FakeUsersController.#ctor(FakeUserApi.Models.FakeUserContext,Microsoft.Extensions.Logging.ILogger{FakeUserApi.Controllers.FakeUsersController})">
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.#ctor(FakeUserApi.Models.FakeUserContext,Microsoft.Extensions.Logging.ILogger{FakeUserApi.Controllers.FakeUsersController},FakeUserApi.Interface.IFakeUserService)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <param name="logger"></param>
+            <param name="userservice"></param>
         </member>
         <member name="M:FakeUserApi.Controllers.FakeUsersController.GetFakeUsers">
             <summary>
@@ -32,7 +33,7 @@
         </member>
         <member name="M:FakeUserApi.Controllers.FakeUsersController.PostFakeUser(FakeUserApi.Models.FakeUser)">
             <summary>
-            Add new FakeUsers
+            Create FakeUser
             </summary>
             <remarks>
             {
@@ -42,6 +43,55 @@
             </remarks>
             <param name="fakeUser"></param>
             <returns>New FakeUsers</returns>
+        </member>
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.Authenticate(FakeUserApi.Models.AuthenticateRequest)">
+            <summary>
+            Login User
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.RefreshPassword(FakeUserApi.Models.RefreshPasswordRequest)">
+            <summary>
+            RefreshPassword
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FakeUserApi.Migrations.InitialCreate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FakeUserApi.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.HashPassMigrations.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.HashPassMigrations.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
         </member>
         <member name="T:FakeUserApi.Models.FakeUser">
             <summary>
@@ -63,12 +113,27 @@
             Lastname
             </summary>
         </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Login">
+            <summary>
+            lohin
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.HashPass">
+            <summary>
+            HashPass
+            </summary>
+        </member>
         <member name="T:FakeUserApi.Models.FakeUserContext">
             <summary>
             FakeUserContext
             </summary>
         </member>
-        <member name="M:FakeUserApi.Models.FakeUserContext.#ctor">
+        <member name="P:FakeUserApi.Models.FakeUserContext.FakeUsers">
             <summary>
             
             </summary>
@@ -78,11 +143,6 @@
             
             </summary>
             <param name="options"></param>
-        </member>
-        <member name="P:FakeUserApi.Models.FakeUserContext.FakeUsers">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:FakeUserApi.Models.MyLogEvents">
             <summary>

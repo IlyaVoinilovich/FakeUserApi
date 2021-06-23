@@ -8,6 +8,14 @@ using FakeUserApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using FakeUserApi.Interface;
+using FakeUserApi.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using FakeUserApi.Helpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using IdentityServer4.AccessTokenValidation;
+using System.Text;
 
 namespace FakeUserApi
 {/// <summary>
@@ -40,6 +48,34 @@ namespace FakeUserApi
             string connection = Configuration.GetConnectionString("DefaultConnection");
             // добавляем контекст MobileContext в качестве сервиса в приложение
             services.AddDbContext<FakeUserContext>(options => options.UseSqlServer(connection));
+            services.AddScoped<IFakeUserService, FakeUserService>();
+            services.AddAuthentication(x => 
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["Secret"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                }
+                );
+            }
+            );
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -49,11 +85,10 @@ namespace FakeUserApi
                     Title = "FakeUsers API",
                     Description = "A simple example ASP.NET Core Web API",
                 });
-               var filePath = Path.Combine(AppContext.BaseDirectory, "FakeUserApi.xml");
-               c.IncludeXmlComments(filePath);
+                var filePath = Path.Combine(AppContext.BaseDirectory, "FakeUserApi.xml");
+                c.IncludeXmlComments(filePath);
             });
-
-        }
+        }       
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// <summary>
@@ -77,7 +112,9 @@ namespace FakeUserApi
             }
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/health");

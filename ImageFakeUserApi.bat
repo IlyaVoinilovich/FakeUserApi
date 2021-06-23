@@ -1,0 +1,1 @@
+docker build -t fakeuserapi -f fakeuserapi/Dockerfile .

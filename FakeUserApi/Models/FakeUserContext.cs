@@ -19,7 +19,7 @@ namespace FakeUserApi.Models
         /// <param name="options"></param>
         public FakeUserContext(DbContextOptions<FakeUserContext> options) : base(options)
         {
-            if((Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists()==false)//проверка существует ли бд 
+            if (Database.CanConnect() == false)//проверка существует ли бд 
             Database.EnsureCreated();   // создаем бд с новой схемой
         }
     }

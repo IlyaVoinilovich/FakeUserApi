@@ -3,14 +3,16 @@ using FakeUserApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FakeUserApi.Migrations
 {
     [DbContext(typeof(FakeUserContext))]
-    partial class FakeUserContextModelSnapshot : ModelSnapshot
+    [Migration("20210622141443_HashPassMigrations")]
+    partial class HashPassMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

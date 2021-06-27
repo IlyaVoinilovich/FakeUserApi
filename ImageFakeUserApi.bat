@@ -1,1 +1,1 @@
-docker build -t fakeuserapi -f fakeuserapi/Dockerfile .
+docker build -t fakeuser -f FakeUserApi/Dockerfile .

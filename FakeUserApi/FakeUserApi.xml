@@ -44,89 +44,19 @@
             <param name="fakeUser"></param>
             <returns>New FakeUsers</returns>
         </member>
-        <member name="M:FakeUserApi.Controllers.FakeUsersController.Authenticate(FakeUserApi.Models.AuthenticateRequest)">
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.Authenticate(FakeUserApi.Models.AuthenticateCommand)">
             <summary>
             Login User
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:FakeUserApi.Controllers.FakeUsersController.RefreshPassword(FakeUserApi.Models.RefreshPasswordRequest)">
+        <member name="M:FakeUserApi.Controllers.FakeUsersController.RefreshPassword(FakeUserApi.Models.RefreshPasswordCommand)">
             <summary>
             RefreshPassword
             </summary>
             <param name="model"></param>
             <returns></returns>
-        </member>
-        <member name="T:FakeUserApi.Migrations.InitialCreate">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:FakeUserApi.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="migrationBuilder"></param>
-        </member>
-        <member name="M:FakeUserApi.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="migrationBuilder"></param>
-        </member>
-        <member name="M:FakeUserApi.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="modelBuilder"></param>
-        </member>
-        <member name="M:FakeUserApi.Migrations.HashPassMigrations.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="migrationBuilder"></param>
-        </member>
-        <member name="M:FakeUserApi.Migrations.HashPassMigrations.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="migrationBuilder"></param>
-        </member>
-        <member name="T:FakeUserApi.Models.FakeUser">
-            <summary>
-             FakeUser
-            </summary>
-        </member>
-        <member name="P:FakeUserApi.Models.FakeUser.Id">
-            <summary>
-            ID
-            </summary>
-        </member>
-        <member name="P:FakeUserApi.Models.FakeUser.Name">
-            <summary>
-            Name 
-            </summary>
-        </member>
-        <member name="P:FakeUserApi.Models.FakeUser.Lastname">
-            <summary>
-            Lastname
-            </summary>
-        </member>
-        <member name="P:FakeUserApi.Models.FakeUser.Login">
-            <summary>
-            lohin
-            </summary>
-        </member>
-        <member name="P:FakeUserApi.Models.FakeUser.Email">
-            <summary>
-            Email
-            </summary>
-        </member>
-        <member name="P:FakeUserApi.Models.FakeUser.HashPass">
-            <summary>
-            HashPass
-            </summary>
         </member>
         <member name="T:FakeUserApi.Models.FakeUserContext">
             <summary>
@@ -193,6 +123,76 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:FakeUserApi.Models.FakeUser">
+            <summary>
+             FakeUser
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Name">
+            <summary>
+            Name 
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Lastname">
+            <summary>
+            Lastname
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Login">
+            <summary>
+            lohin
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:FakeUserApi.Models.FakeUser.HashPass">
+            <summary>
+            HashPass
+            </summary>
+        </member>
+        <member name="T:FakeUserApi.Migrations.InitialCreate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FakeUserApi.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.HashPassMigrations.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:FakeUserApi.Migrations.HashPassMigrations.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="migrationBuilder"></param>
         </member>
         <member name="T:FakeUserApi.Program">
             <summary>

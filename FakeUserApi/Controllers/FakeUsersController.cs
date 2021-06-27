@@ -8,6 +8,7 @@ using FakeUserApi.Interface;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using BC = BCrypt.Net.BCrypt;
+using System.Security.Claims;
 
 namespace FakeUserApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace FakeUserApi.Controllers
         private readonly FakeUserContext _context;
         private readonly ILogger<FakeUsersController> _logger;
         private readonly IFakeUserService _userservice;
+        private long UserId => long.Parse(User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value);
         /// <summary>
         /// 
         /// </summary>
@@ -41,10 +43,11 @@ namespace FakeUserApi.Controllers
         /// <returns>All FakeUsers</returns>
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FakeUser>>> GetFakeUsers()
+        public async Task<ActionResult<IEnumerable<FakeUserView>>> GetFakeUsers()
         {
-            _logger.LogInformation(MyLogEvents.TestItem, "Getting all items");
-            return await _context.FakeUsers.ToListAsync();
+            _logger.LogInformation(MyLogEvents.TestItem, "Getting all users by user {id}",UserId);
+            var _fakeUsers =await _context.FakeUsers.ToListAsync();
+            return Ok(_fakeUsers);
         }
 
         // GET: api/FakeUsers/5
@@ -57,17 +60,17 @@ namespace FakeUserApi.Controllers
         [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(FakeUser), 204)]
-        public async Task<ActionResult<FakeUser>> GetFakeUser(long id)
+        public async Task<ActionResult> GetFakeUser(long id)
         {
 
-            var fakeUser = await _context.FakeUsers.FindAsync(id);
+            var _user = await _context.FakeUsers.FindAsync(id);
 
-            if (fakeUser == null)
+            if (_user == null)
             {
                 return NotFound();
             }
-            _logger.LogInformation(MyLogEvents.GetItem, "Find item {Id}", fakeUser.Id);
-            return fakeUser;
+            _logger.LogInformation(MyLogEvents.GetItem, "Find user {Id} by user {idUser}",(id,UserId));
+            return Ok(_user);
         }
         /// <summary>
         /// Create FakeUser
@@ -106,9 +109,9 @@ namespace FakeUserApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate(AuthenticateRequest model)
+        public async Task<IActionResult> Authenticate(AuthenticateCommand command)
         {
-            var response = _userservice.Authenticate(model);
+            var response = _userservice.Authenticate(command);
 
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -121,7 +124,7 @@ namespace FakeUserApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("RefreshPassword")]
-        public IActionResult RefreshPassword([FromBody]RefreshPasswordRequest model)
+        public IActionResult RefreshPassword([FromBody]RefreshPasswordCommand model)
         {
             var account = _context.FakeUsers.SingleOrDefault(x => x.Email == model.Email);
 

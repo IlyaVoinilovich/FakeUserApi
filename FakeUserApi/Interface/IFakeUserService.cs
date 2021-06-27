@@ -4,6 +4,6 @@ namespace FakeUserApi.Interface
 {
     public  interface IFakeUserService
     {
-       public AuthenticateResponse Authenticate(AuthenticateRequest model);
+       public AuthenticateUser Authenticate(AuthenticateCommand model);
     }
 }

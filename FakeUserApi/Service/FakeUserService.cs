@@ -19,11 +19,11 @@ namespace FakeUserApi.Service
             _configuration = configuration;
             _logger = logger;
         }
-        public AuthenticateResponse Authenticate(AuthenticateRequest model)
+        public AuthenticateUser Authenticate(AuthenticateCommand command)
         {
-            var account = _context.FakeUsers.SingleOrDefault(x => x.Login == model.Login);
+            var account = _context.FakeUsers.SingleOrDefault(x => x.Login == command.Login);
 
-            if (account == null || !BC.Verify(model.Pass, account.HashPass))
+            if (account == null || !BC.Verify(command.Pass, account.HashPass))
             {
                 _logger.LogWarning(MyLogEvents.GenerateItems, "authenticate faild");
                 return null;
@@ -31,7 +31,7 @@ namespace FakeUserApi.Service
 
             var token = _configuration.GenerateJwtToken(account);
             _logger.LogInformation(MyLogEvents.GenerateItems, "authenticate FakeUser {Id}", account.Id);
-            return new AuthenticateResponse(account, token);
+            return new AuthenticateUser(account, token);
         }
     }
 }

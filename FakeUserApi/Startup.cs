@@ -12,9 +12,6 @@ using FakeUserApi.Interface;
 using FakeUserApi.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using FakeUserApi.Helpers;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using IdentityServer4.AccessTokenValidation;
 using System.Text;
 
 namespace FakeUserApi
@@ -45,9 +42,7 @@ namespace FakeUserApi
         {
             services.AddHealthChecks().AddDbContextCheck<FakeUserContext>();
             // services.AddDbContext<FakeUserContext>(options => options.UseInMemoryDatabase("FakeUserList"));
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            // добавляем контекст MobileContext в качестве сервиса в приложение
-            services.AddDbContext<FakeUserContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<FakeUserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IFakeUserService, FakeUserService>();
             services.AddAuthentication(x => 
                 {

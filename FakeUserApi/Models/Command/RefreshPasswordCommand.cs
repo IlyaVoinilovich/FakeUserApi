@@ -2,7 +2,7 @@
 
 namespace FakeUserApi.Models
 {
-    public class RefreshPasswordRequest
+    public class RefreshPasswordCommand
     {
         [Required]
         public string Email { get; set; }

@@ -20,7 +20,7 @@ namespace FakeUserApi.Helpers
             var key = Encoding.ASCII.GetBytes(configuration["Secret"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()) }),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

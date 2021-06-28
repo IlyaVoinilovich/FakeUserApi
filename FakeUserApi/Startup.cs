@@ -41,8 +41,8 @@ namespace FakeUserApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddDbContextCheck<FakeUserContext>();
-            // services.AddDbContext<FakeUserContext>(options => options.UseInMemoryDatabase("FakeUserList"));
-            services.AddDbContext<FakeUserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // services.AddDbContext<FakeUserContext>(options => options.UseInMemoryDatabase("FakeUserList
+            services.AddDbContext<FakeUserContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("DefaultConnection")));
             services.AddScoped<IFakeUserService, FakeUserService>();
             services.AddAuthentication(x => 
                 {
@@ -71,6 +71,7 @@ namespace FakeUserApi
                 );
             }
             );
+            services.AddOptions();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -93,6 +94,11 @@ namespace FakeUserApi
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json") // Duplicate == Json1
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json") // Duplicate == Json1
+            .AddEnvironmentVariables() // Duplicate == Environment
+            .Build();
             app.UseSwagger(c =>
             {
                 c.SerializeAsV2 = true;

@@ -46,8 +46,7 @@ namespace FakeUserApi.Controllers
         public async Task<ActionResult<IEnumerable<FakeUserView>>> GetFakeUsers()
         {
             _logger.LogInformation(MyLogEvents.TestItem, "Getting all users by user {id}",UserId);
-            var _fakeUsers =await _context.FakeUsers.ToListAsync();
-            return Ok(_fakeUsers);
+            return Ok(await _context.FakeUsers.AsNoTracking().Select(x => new FakeUserView(x)).ToArrayAsync());
         }
 
         // GET: api/FakeUsers/5
@@ -60,7 +59,7 @@ namespace FakeUserApi.Controllers
         [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(FakeUser), 204)]
-        public async Task<ActionResult> GetFakeUser(long id)
+        public async Task<ActionResult<FakeUserView>> GetFakeUser(long id)
         {
 
             var _user = await _context.FakeUsers.FindAsync(id);
@@ -69,21 +68,24 @@ namespace FakeUserApi.Controllers
             {
                 return NotFound();
             }
-            _logger.LogInformation(MyLogEvents.GetItem, "Find user {Id} by user {idUser}",(id,UserId));
-            return Ok(_user);
+            _logger.LogInformation(MyLogEvents.GetItem, "Find user by User{Id}",UserId);
+            return Ok(new FakeUserView(_user));
         }
         /// <summary>
         /// Create FakeUser
         /// </summary>
         /// <remarks>
         /// {
-        ///     "name": "string",
-        ///     "lastname": "string"
+        ///     "name": "ilya",
+        ///     "lastname": "Xan",
+        ///     "login": "txan",
+        ///     "email": "xan@gmail.com",
+        ///     "hashPass": "t150898"
         /// }
         /// </remarks>
         /// <param name="fakeUser"></param>
         /// <returns>New FakeUsers</returns>
-        [HttpPost]
+    [HttpPost]
         [ProducesResponseType(typeof(FakeUser), 201)]
         public async Task<ActionResult<FakeUser>> PostFakeUser(FakeUser fakeUser)
         {
